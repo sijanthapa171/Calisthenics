@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calisthenics - made for workout tracking</title>
+  <meta name="theme-color" content="#071127" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="sys-time" id="sysTime" aria-live="polite">--:--:--</div>
+      <div class="greeting" id="greeting">Hello!</div>
+      <div class="header-actions">
+        <button class="name-btn" id="changeName">Change Name</button>
+        <button class="name-btn" id="themeToggle" aria-pressed="false" title="Toggle theme">Theme</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="card-grid">
+        <div class="stopwatch-area">
+          <div class="time-display" id="time">00:00:00.000</div>
+
+          <div class="controls">
+            <button class="btn green" id="startBtn">Start</button>
+            <button class="btn orange" id="pauseBtn" disabled>Pause</button>
+            <button class="btn" id="lapBtn" disabled>Lap</button>
+            <button class="btn red" id="resetBtn" disabled>Reset</button>
+          </div>
+
+          <div class="laps" aria-live="polite">
+            <h3>Laps</h3>
+            <ol id="lapsList" class="laps-list"></ol>
+          </div>
+        </div>
+
+        <div class="bottom-row">
+          <div class="counter-area">
+            <h3>Counter</h3>
+            <div class="counter-display" id="counterValue">0</div>
+            <div class="counter-controls">
+              <button class="btn" id="incBtn">+1</button>
+              <button class="btn" id="inc5Btn">+5</button>
+              <button class="btn" id="inc50Btn">+50</button>
+              <button class="btn" id="decBtn">-1</button>
+              <button class="btn" id="resetCounter">Reset</button>
+            </div>
+          </div>
+
+          <div class="timer-area">
+            <h3>Timer</h3>
+            <div class="timer-display" id="timerDisplay">00:00</div>
+            <div class="timer-inputs">
+              <input id="timerMinutes" type="number" min="0" placeholder="MM" aria-label="minutes"> :
+              <input id="timerSeconds" type="number" min="0" max="59" placeholder="SS" aria-label="seconds">
+            </div>
+            <div class="timer-controls">
+              <button class="btn green" id="timerStart">Start</button>
+              <button class="btn orange" id="timerPause" disabled>Pause</button>
+              <button class="btn" id="timerReset" disabled>Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="greetTitle">
+    <div class="modal">
+      <h2 id="greetTitle">Welcome 👋</h2>
+      <p>What's your name?</p>
+      <input id="nameInput" type="text" placeholder="Your name" aria-label="Your name">
+      <div class="modal-actions">
+        <button class="btn green" id="saveName">Save</button>
+        <button class="btn" id="skipName">Skip</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
