@@ -298,9 +298,9 @@
   }
 
   const sysTimeEl = document.getElementById('sysTime');
+  const sysTimeCardEl = document.getElementById('sysTimeCard');
   function pad(n) { return String(n).padStart(2, '0'); }
   function updateSystemTime() {
-    if (!sysTimeEl) return;
     const d = new Date();
     let hours = d.getHours();
     const ampm = hours >= 12 ? 'PM' : 'AM';
@@ -308,7 +308,9 @@
     const hh = pad(hours);
     const mm = pad(d.getMinutes());
     const ss = pad(d.getSeconds());
-    sysTimeEl.textContent = `${hh}:${mm}:${ss} ${ampm}`;
+    const text = `${hh}:${mm}:${ss} ${ampm}`;
+    if (sysTimeEl) sysTimeEl.textContent = text;
+    if (sysTimeCardEl) sysTimeCardEl.textContent = text;
   }
   updateSystemTime();
   setInterval(updateSystemTime, 1000);

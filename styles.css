@@ -85,6 +85,14 @@ body {
   margin-bottom: 6px;
 }
 
+.sys-time-card {
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 8px 0 6px;
+}
+
 .greeting {
   font-size: 1.05rem;
   color: var(--muted)
