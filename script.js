@@ -297,7 +297,6 @@
     });
   }
 
-  const sysTimeEl = document.getElementById('sysTime');
   const sysTimeCardEl = document.getElementById('sysTimeCard');
   function pad(n) { return String(n).padStart(2, '0'); }
   function updateSystemTime() {
@@ -309,7 +308,6 @@
     const mm = pad(d.getMinutes());
     const ss = pad(d.getSeconds());
     const text = `${hh}:${mm}:${ss} ${ampm}`;
-    if (sysTimeEl) sysTimeEl.textContent = text;
     if (sysTimeCardEl) sysTimeCardEl.textContent = text;
   }
   updateSystemTime();

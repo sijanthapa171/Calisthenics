@@ -76,14 +76,6 @@ body {
   margin-bottom: 18px
 }
 
-.sys-time {
-  width: 100%;
-  text-align: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-  font-size: 0.95rem;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
 
 .sys-time-card {
   text-align: center;
