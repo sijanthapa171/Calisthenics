@@ -1,88 +1,117 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Calisthenics - made for workout tracking</title>
-  <meta name="theme-color" content="#071127" />
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+  <title>Calisthenics — made for workout record</title>
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <main class="container">
-    <header class="header">
-      <div class="greeting" id="greeting">Hello!</div>
-      <div class="header-actions">
-        <button class="name-btn" id="changeName">Change Name</button>
-        <button class="name-btn" id="themeToggle" aria-pressed="false" title="Toggle theme">Theme</button>
-      </div>
-    </header>
+  <div class="app">
+    <div class="card">
+      <header class="topbar">
+        <div class="greeting" id="greeting">Hello!</div>
+        <div class="top-actions">
+          <button id="change-name" class="btn small">Change Name</button>
+        </div>
+      </header>
 
-    <section class="card">
-      <div class="card-grid">
-        <div class="stopwatch-area">
-          <div class="sys-time-card" id="sysTimeCard">--:--:--</div>
-          <div class="time-display" id="time">00:00:00.000</div>
-
-          <div class="controls">
-            <button class="btn green" id="startBtn">Start</button>
-            <button class="btn orange" id="pauseBtn" disabled>Pause</button>
-            <button class="btn" id="lapBtn" disabled>Lap</button>
-            <button class="btn red" id="resetBtn" disabled>Reset</button>
-          </div>
-
-          <div class="laps" aria-live="polite">
-            <h3>Laps</h3>
-            <ol id="lapsList" class="laps-list"></ol>
-          </div>
+      <main class="card-body">
+        <div class="clock-head">
+          <div id="global-display" class="global-display">07:45:40 PM</div>
         </div>
 
-        <div class="bottom-row">
-          <div class="counter-area">
-            <h3>Counter</h3>
-            <div class="counter-display" id="counterValue">0</div>
-            <div class="counter-controls">
-              <button class="btn" id="incBtn">+1</button>
-              <button class="btn" id="inc5Btn">+5</button>
-              <button class="btn" id="inc50Btn">+50</button>
-              <button class="btn" id="decBtn">-1</button>
-              <button class="btn" id="resetCounter">Reset</button>
+        <section class="stopwatch-area">
+          <div id="stopwatch-display" class="stopwatch-display">00:00:00.000</div>
+
+          <div class="sw-controls controls">
+            <button id="sw-start" class="btn primary">Start</button>
+            <button id="sw-pause" class="btn" disabled>Pause</button>
+            <button id="sw-lap" class="btn" disabled>Lap</button>
+            <button id="sw-reset" class="btn">Reset</button>
+          </div>
+
+          <div class="laps">
+            <h3 class="laps-title">Laps</h3>
+            <div id="laps-list" class="laps-list">
+              <!-- Lap items inserted here -->
+            </div>
+          </div>
+        </section>
+
+        <section class="bottom-panels">
+          <div class="panel counter-panel">
+            <h3 class="panel-title">Counter</h3>
+            <div id="counter-readout" class="counter-large">0</div>
+            <div class="btn-row">
+              <button class="btn small" data-delta="1">+1</button>
+              <button class="btn small" data-delta="5">+5</button>
+              <button class="btn small" data-delta="50">+50</button>
+              <button class="btn small" data-delta="-1">-1</button>
+              <button id="counter-reset" class="btn small">Reset</button>
             </div>
           </div>
 
-          <div class="timer-area">
-            <h3>Timer</h3>
-            <div class="timer-display" id="timerDisplay">00:00</div>
-            <div class="timer-inputs">
-              <input id="timerMinutes" type="number" min="0" placeholder="MM" aria-label="minutes"> :
-              <input id="timerSeconds" type="number" min="0" max="59" placeholder="SS" aria-label="seconds">
+          <div class="panel timer-panel">
+            <h3 class="panel-title">Timer</h3>
+            <div id="countdown-display" class="countdown-large">00:00</div>
+
+            <div class="timer-form">
+              <div class="spin-control">
+                <input id="t-min" type="number" min="0" placeholder="MM" />
+                <div class="spin-buttons">
+                  <button class="spin-btn spin-up" data-target="t-min" aria-label="increase minutes">▲</button>
+                  <button class="spin-btn spin-down" data-target="t-min" aria-label="decrease minutes">▼</button>
+                </div>
+              </div>
+              <span class="colon">:</span>
+              <div class="spin-control">
+                <input id="t-sec" type="number" min="0" max="59" placeholder="SS" />
+                <div class="spin-buttons">
+                  <button class="spin-btn spin-up" data-target="t-sec" aria-label="increase seconds">▲</button>
+                  <button class="spin-btn spin-down" data-target="t-sec" aria-label="decrease seconds">▼</button>
+                </div>
+              </div>
             </div>
-            <div class="timer-controls">
-              <button class="btn green" id="timerStart">Start</button>
-              <button class="btn orange" id="timerPause" disabled>Pause</button>
-              <button class="btn" id="timerReset" disabled>Reset</button>
+
+            <div class="cd-controls btn-row">
+              <button id="cd-start" class="btn small">Start</button>
+              <button id="cd-stop" class="btn small" disabled>Pause</button>
+              <button id="cd-reset" class="btn small">Reset</button>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  </main>
+        </section>
+      </main>
+    </div>
+  </div>
 
-  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="greetTitle">
+  <!-- Welcome modal (asks name) -->
+  <div id="welcome-modal" class="modal-overlay" aria-hidden="true">
     <div class="modal">
-      <h2 id="greetTitle">Welcome 👋</h2>
-      <p>What's your name?</p>
-      <input id="nameInput" type="text" placeholder="Your name" aria-label="Your name">
+      <h2 class="modal-title">Welcome <span aria-hidden>👋</span></h2>
+      <p class="modal-sub">What's your name?</p>
+      <input id="name-input" class="modal-input" type="text" placeholder="Your name" />
       <div class="modal-actions">
-        <button class="btn green" id="saveName">Save</button>
-        <button class="btn" id="skipName">Skip</button>
+        <button id="name-save" class="btn">Save</button>
+        <button id="name-skip" class="btn">Skip</button>
       </div>
     </div>
   </div>
 
   <script src="script.js"></script>
+  <script>
+    // Register service worker for PWA / offline support
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register('sw.js').then(reg=>{
+          console.log('ServiceWorker registered.', reg);
+        }).catch(err=>{
+          console.warn('ServiceWorker registration failed:', err);
+        });
+      });
+    }
+  </script>
 </body>
-
 </html>
