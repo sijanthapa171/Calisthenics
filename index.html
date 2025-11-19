@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -8,6 +9,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <div class="app">
     <div class="card">
@@ -36,7 +38,6 @@
           <div class="laps">
             <h3 class="laps-title">Laps</h3>
             <div id="laps-list" class="laps-list">
-              <!-- Lap items inserted here -->
             </div>
           </div>
         </section>
@@ -87,7 +88,6 @@
     </div>
   </div>
 
-  <!-- Welcome modal (asks name) -->
   <div id="welcome-modal" class="modal-overlay" aria-hidden="true">
     <div class="modal">
       <h2 class="modal-title">Welcome <span aria-hidden>👋</span></h2>
@@ -102,16 +102,16 @@
 
   <script src="script.js"></script>
   <script>
-    // Register service worker for PWA / offline support
-    if('serviceWorker' in navigator){
-      window.addEventListener('load', ()=>{
-        navigator.serviceWorker.register('sw.js').then(reg=>{
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(reg => {
           console.log('ServiceWorker registered.', reg);
-        }).catch(err=>{
+        }).catch(err => {
           console.warn('ServiceWorker registration failed:', err);
         });
       });
     }
   </script>
 </body>
+
 </html>
